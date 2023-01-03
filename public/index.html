@@ -2,53 +2,89 @@
 <html>
 	<head>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 		<style>
+            * {
+                text-align: center;
+            }
+            .expected.title.is-1 {
+                font-size: 8rem;
+            }
+
+            .optimistic button {
+                padding-top: 3em;
+                padding-bottom: 3em;
+            }
+
 		</style>
 	</head>
 	<body>
-
-    <div class="input item">
-        <div class="main_category"></div>
-        <div class="sub_category"></div>
-        <div class="item"></div>
-        <div class="optimistic columns is-mobile">
-            <div class="column">
-
+    <div class="wrapper hero is-fullheight content is-large">
+        <div class="hero-body">
+            <div class="intro container">
+                <p>You are about to fill an inventory report for A VERY IMPORTANT VEHICLE!</p>
+                <p>&nbsp;</p>
+                <p>Press start when ready.</p>
+                <p>&nbsp;</p>
+                <p><button class="button is-primary is-fullwidth is-large">Start Inventory Report</button></p>
             </div>
-            <div class="column">
-
+    
+            <div class="category container has-text-centered">
+                <h1 class="main title is-1"></h1>
+                <h2 class="sub title is-2"></h2>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p><button class="button is-primary is-fullwidth is-large">Report items</button></p>
             </div>
+
+            <div class="item container">
+                <div class="main_category box title is-5"></div>
+                <div class="sub_category box title is-4"></div>
+                <div class="item box title is-3"></div>
+
+                <div class="optimistic columns is-mobile is-vcentered">
+                    <div class="column is-half">
+                        <span class="expected title is-1"></span>
+                        <span class="unit"></span>
+                    </div>
+                    <div class="column is-half">
+                        <p><button class="button is-success is-fullwidth is-large">
+                            <span>AS EXPECTED</span>
+                        </button></p>
+                        <p><button class="button is-danger is-fullwidth is-large">
+                            <span>DIFFERENT</span>
+                        </button></p>
+                    </div>
+                </div>
+    
+                <div class="entry">
+                    <p>Number of items expected: <span class="expected"></span></p>
+                    <p>Number of items seen: <input class="reported is-large" type="number" name="reported"/></p>
+                    <p>Reason for the discrepancy:</p>
+                    <p><textarea class="textarea reason" placeholder="Input reason here"></textarea></p>
+                    <p>&nbsp;</p>
+                    <p><button class="button is-primary is-fullwidth is-large">Report and continue</button></p>
+                </div>
+            </div>
+
+            <div class="summary container">
+                <p><span class="correct"></span> items found matching inventory expectations.</p>
+                <p>&nbsp;</p>
+                <p>The following items were not as expected:</p>
+                <ul></ul>
+                <p>&nbsp;</p>
+                <p>Are you ready to submit this inventory report?</p>
+                <p>&nbsp;</p>
+                <p><button class="button is-primary is-fullwidth is-large">Submit Inventory</button></p>
+            </div>
+    
+            <div class="thank_you"></div>
         </div>
-        <div class="optimistic">
-            <input />
+
+        <div class="navigation hero-foot">
+            <button class="back button is-primary is-fullwidth">&lt; Back</button>
+            <button class="next button is-primary is-fullwidth">&lt; Next</button>
         </div>
-
-
     </div>
-
-    <div class="category main">
-
-    </div>
-
-    <div class="category sub">
-
-    </div>
-
-    <div class="summary">
-
-    </div>
-
-    <div class="thank_you">
-
-    </div>
-
-    <div class="columns">
-        <div class="column is-full">is-four-fifths</div>
-    </div>
-
-    <script type="module">
-
-    </script>
+    <script type="module" src="./js/main.js"></script>
 	</body>
 </html>
