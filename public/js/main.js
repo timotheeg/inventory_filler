@@ -44,12 +44,23 @@ function showSummary() {
     summary.issues.forEach(issue => {
         const li = document.createElement('li');
 
-        li.textContent = `${[
-            issue.mainCategory.name,
-            issue.subCategory.name,
-            issue.item.name,
-        ].join(' / ')} (Reported ${issue.item.reported} vs. Expected ${issue.item.expected}; reason: ${issue.item.reason})`
+        li.textContent = `[${issue.mainCategory.name}] - [${issue.subCategory.name}] - ${issue.item.name}`;
         
+        const ul2 = document.createElement('ul');
+
+        const liReported = document.createElement('li');
+        const liExpected = document.createElement('li');
+        const liReason = document.createElement('li');
+
+        liReported.textContent  = `Expected: ${issue.item.expected}`
+        liExpected.textContent  = `Reported: ${issue.item.reported}`
+        liReason.textContent  = `Reason: ${issue.item.reason}`
+
+        ul2.appendChild(liReported);
+        ul2.appendChild(liExpected);
+        ul2.appendChild(liReason);
+
+        li.appendChild(ul2);
         ul.appendChild(li);
     });
 
