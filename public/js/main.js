@@ -45,16 +45,16 @@ function showSummary() {
         const li = document.createElement('li');
 
         li.textContent = `[${issue.mainCategory.name}] - [${issue.subCategory.name}] - ${issue.item.name}`;
-        
+
         const ul2 = document.createElement('ul');
 
         const liReported = document.createElement('li');
         const liExpected = document.createElement('li');
         const liReason = document.createElement('li');
 
-        liReported.textContent  = `Expected: ${issue.item.expected}`
-        liExpected.textContent  = `Reported: ${issue.item.reported}`
-        liReason.textContent  = `Reason: ${issue.item.reason}`
+        liReported.textContent = `Expected: ${issue.item.expected}`
+        liExpected.textContent = `Reported: ${issue.item.reported}`
+        liReason.textContent = `Reason: ${issue.item.reason}`
 
         ul2.appendChild(liReported);
         ul2.appendChild(liExpected);
@@ -96,6 +96,12 @@ function showNext() {
     }
 }
 
+function showPrevious() {
+    if (currenItemIndex > 0) {
+        showItem(currenItemIndex - 1);
+    }
+}
+
 function hideAll() {
     for (const page of Object.values(dom)) {
         page.style.display = 'none'
@@ -109,7 +115,7 @@ function populateItem(item) {
     dom.item.querySelector('.expected').textContent = item.item.expected;
 
     // disgusting pluralization, but just for demo!
-    dom.item.querySelector('.unit').textContent = (item.item.type === 'set' ? 
+    dom.item.querySelector('.unit').textContent = (item.item.type === 'set' ?
         'Set' : 'No') + (item.item.expected > 1 ? 's' : '');
 
     dom.item.querySelector('.entry').style.display = 'none';
@@ -121,9 +127,7 @@ function showItem(index = 0) {
 
     hideAll();
 
-    if (index > 0) {
-        delete dom.navigation.style.display;
-    }
+    dom.navigation.style.display = index > 0 ? '' : 'none'
 
     const toShow = report[index];
 
@@ -138,7 +142,9 @@ function showItem(index = 0) {
     }
 }
 
-function submitReport() {}
+function submitReport() {
+    // Send report to server and show thank you page.
+}
 
 async function run() {
     hideAll();
@@ -181,6 +187,10 @@ async function run() {
 
     dom.item.querySelector('.entry button').addEventListener('click', () => {
         reportDiscrepancyAndContinue();
+    })
+
+    dom.navigation.querySelector('button').addEventListener('click', () => {
+        showPrevious();
     })
 
     // show Intro

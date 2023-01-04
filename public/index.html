@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css" />
-		<style>
-            * {
-                text-align: center;
-            }
-            .expected.title.is-1 {
-                font-size: 8rem;
-            }
 
-            .optimistic button {
-                padding-top: 3em;
-                padding-bottom: 3em;
-            }
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.css" />
+    <style>
+        * {
+            text-align: center;
+        }
 
-            .summary ul, .summary ul * {
-                text-align: left;
-            }
+        .expected.title.is-1 {
+            font-size: 8rem;
+        }
 
-		</style>
-	</head>
-	<body>
+        .optimistic button {
+            padding-top: 3em;
+            padding-bottom: 3em;
+        }
+
+        .summary ul,
+        .summary ul * {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
     <div class="wrapper hero is-fullheight content is-large">
         <div class="hero-body">
             <div class="intro container">
@@ -31,7 +34,7 @@
                 <p>&nbsp;</p>
                 <p><button class="button is-primary is-fullwidth is-large">Start Inventory Report</button></p>
             </div>
-    
+
             <div class="category container has-text-centered">
                 <h1 class="main title is-1"></h1>
                 <h2 class="sub title is-2"></h2>
@@ -52,17 +55,17 @@
                     </div>
                     <div class="column is-half">
                         <p><button class="button is-success is-fullwidth is-large">
-                            <span>AS EXPECTED</span>
-                        </button></p>
+                                <span>AS EXPECTED</span>
+                            </button></p>
                         <p><button class="button is-danger is-fullwidth is-large">
-                            <span>DIFFERENT</span>
-                        </button></p>
+                                <span>DIFFERENT</span>
+                            </button></p>
                     </div>
                 </div>
-    
+
                 <div class="entry">
                     <p>Number of items expected: <span class="expected"></span></p>
-                    <p>Number of items seen: <input class="reported is-large" type="number" name="reported"/></p>
+                    <p>Number of items seen: <input class="reported is-large" type="number" name="reported" /></p>
                     <p>Reason for the discrepancy:</p>
                     <p><textarea class="textarea reason" placeholder="Input reason here"></textarea></p>
                     <p>&nbsp;</p>
@@ -80,15 +83,15 @@
                 <p>&nbsp;</p>
                 <p><button class="button is-primary is-fullwidth is-large">Submit Inventory</button></p>
             </div>
-    
+
             <div class="thank_you"></div>
         </div>
 
         <div class="navigation hero-foot">
             <button class="back button is-primary is-fullwidth">&lt; Back</button>
-            <button class="next button is-primary is-fullwidth">&lt; Next</button>
         </div>
     </div>
     <script type="module" src="./js/main.js"></script>
-	</body>
+</body>
+
 </html>

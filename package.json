@@ -4,6 +4,7 @@
   "description": "Simple UI to speed up inventory taking (when there are clear expectations)",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
