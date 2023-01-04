@@ -70,10 +70,6 @@ function showSummary() {
 function promptForValue() {
     const item = report[currenItemIndex];
 
-    dom.item.querySelector('.entry .expected').textContent = item.item.expected;
-    dom.item.querySelector('.entry .reported').value = item.item.reported || '';
-    dom.item.querySelector('.entry .reason').value = item.item.reason || '';
-
     dom.item.querySelector('.entry').style.display = '';
     dom.item.querySelector('.optimistic').style.display = 'none';
 }
@@ -113,13 +109,29 @@ function populateItem(item) {
     dom.item.querySelector('.sub_category').textContent = item.subCategory.name;
     dom.item.querySelector('.item').textContent = item.item.name;
     dom.item.querySelector('.expected').textContent = item.item.expected;
+    dom.item.querySelector('.last .value').textContent = item.item.last || '';
 
     // disgusting pluralization, but just for demo!
     dom.item.querySelector('.unit').textContent = (item.item.type === 'set' ?
         'Set' : 'No') + (item.item.expected > 1 ? 's' : '');
 
-    dom.item.querySelector('.entry').style.display = 'none';
-    dom.item.querySelector('.optimistic').style.display = '';
+    dom.item.querySelector('.last .unit').textContent = (item.item.type === 'set' ?
+        'Set' : 'No') + ((item.item.last || 0) > 1 ? 's' : '');
+
+    dom.item.querySelector('.entry .expected').textContent = item.item.expected;
+    dom.item.querySelector('.entry .reported').value = item.item.reported || item.item.last || '';
+    dom.item.querySelector('.entry .reason').value = item.item.reason || '';
+    dom.item.querySelector('.last').style.display = 'last' in item.item ? '' : 'none';
+    dom.item.querySelector('button.is-warning').style.display = 'last' in item.item ? '' : 'none';
+
+    if (!('reported' in item.item) || item.item.reported === item.item.expected || item.item.reported === item.item.last) {
+        dom.item.querySelector('.entry').style.display = 'none';
+        dom.item.querySelector('.optimistic').style.display = '';
+    }
+    else {
+        dom.item.querySelector('.entry').style.display = '';
+        dom.item.querySelector('.optimistic').style.display = 'none';
+    }
 }
 
 function showItem(index = 0) {
@@ -178,6 +190,11 @@ async function run() {
 
     dom.item.querySelector('.optimistic button.is-success').addEventListener('click', () => {
         report[currenItemIndex].item.reported = report[currenItemIndex].item.expected;
+        showNext();
+    })
+
+    dom.item.querySelector('.optimistic button.is-warning').addEventListener('click', () => {
+        report[currenItemIndex].item.reported = report[currenItemIndex].item.last;
         showNext();
     })
 

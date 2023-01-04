@@ -50,6 +50,8 @@ export const definition = [
                         name: 'BA Tallies',
                         type: 'unit',
                         expected: 6,
+                        last: 5,
+                        reason: '1 item is deffective'
                     },
                     {
                         id: 12345,

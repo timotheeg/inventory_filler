@@ -50,12 +50,21 @@
 
                 <div class="optimistic columns is-mobile is-vcentered">
                     <div class="column is-half">
-                        <span class="expected title is-1"></span>
-                        <span class="unit"></span>
+                        <p><span class="expected title is-1"></span>
+                            <span class="unit"></span>
+                        </p>
+                        <div class="last">
+                            <p>Last report: <strong><span class="value"></span>
+                                    <span class="unit"></span></strong>
+                            </p>
+                        </div>
                     </div>
                     <div class="column is-half">
                         <p><button class="button is-success is-fullwidth is-large">
                                 <span>AS EXPECTED</span>
+                            </button></p>
+                        <p><button class="button is-warning is-fullwidth is-large">
+                                <span>LIKE LAST VALUE</span>
                             </button></p>
                         <p><button class="button is-danger is-fullwidth is-large">
                                 <span>DIFFERENT</span>
@@ -69,7 +78,7 @@
                     <p>Reason for the discrepancy:</p>
                     <p><textarea class="textarea reason" placeholder="Input reason here"></textarea></p>
                     <p>&nbsp;</p>
-                    <p><button class="button is-primary is-fullwidth is-large">Report and continue</button></p>
+                    <p><button class="button is-primary is-fullwidth is-large">Set and continue</button></p>
                 </div>
             </div>
 
