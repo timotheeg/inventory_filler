@@ -64,6 +64,8 @@ function showSummary() {
         ul.appendChild(li);
     });
 
+    // TODO: prepare reports for all OK items
+
     dom.summary.style.display = '';
 }
 
@@ -110,6 +112,10 @@ function populateItem(item) {
     dom.item.querySelector('.item').textContent = item.item.name;
     dom.item.querySelector('.expected').textContent = item.item.expected;
     dom.item.querySelector('.last .value').textContent = item.item.last || '';
+    dom.item.querySelector('.reason').textContent = item.item.reason || '';
+
+    dom.item.querySelector('.is-success').classList.remove('is-focused')
+    dom.item.querySelector('.is-warning').classList.remove('is-focused')
 
     // disgusting pluralization, but just for demo!
     dom.item.querySelector('.unit').textContent = (item.item.type === 'set' ?
@@ -122,11 +128,17 @@ function populateItem(item) {
     dom.item.querySelector('.entry .reported').value = item.item.reported || item.item.last || '';
     dom.item.querySelector('.entry .reason').value = item.item.reason || '';
     dom.item.querySelector('.last').style.display = 'last' in item.item ? '' : 'none';
-    dom.item.querySelector('button.is-warning').style.display = 'last' in item.item ? '' : 'none';
+    dom.item.querySelector('.is-warning').style.display = 'last' in item.item ? '' : 'none';
 
     if (!('reported' in item.item) || item.item.reported === item.item.expected || item.item.reported === item.item.last) {
         dom.item.querySelector('.entry').style.display = 'none';
         dom.item.querySelector('.optimistic').style.display = '';
+        if (item.item.reported === item.item.expected) {
+            dom.item.querySelector('.is-success').classList.add('is-focused')
+        }
+        else if (item.item.reported === item.item.last) {
+            dom.item.querySelector('.is-warning').classList.add('is-focused')
+        }
     }
     else {
         dom.item.querySelector('.entry').style.display = '';
@@ -188,17 +200,17 @@ async function run() {
         showNext();
     })
 
-    dom.item.querySelector('.optimistic button.is-success').addEventListener('click', () => {
+    dom.item.querySelector('.optimistic .is-success').addEventListener('click', () => {
         report[currenItemIndex].item.reported = report[currenItemIndex].item.expected;
         showNext();
     })
 
-    dom.item.querySelector('.optimistic button.is-warning').addEventListener('click', () => {
+    dom.item.querySelector('.optimistic .is-warning').addEventListener('click', () => {
         report[currenItemIndex].item.reported = report[currenItemIndex].item.last;
         showNext();
     })
 
-    dom.item.querySelector('.optimistic button.is-danger').addEventListener('click', () => {
+    dom.item.querySelector('.optimistic .is-danger').addEventListener('click', () => {
         promptForValue(report[currenItemIndex]);
     })
 

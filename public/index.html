@@ -12,9 +12,16 @@
             font-size: 8rem;
         }
 
-        .optimistic button {
+        .optimistic .button {
             padding-top: 3em;
             padding-bottom: 3em;
+            margin-bottom: 1em;
+        }
+
+        .optimistic .button.is-warning {
+            padding-top: 2em;
+            display: block;
+            height: 9em;
         }
 
         .summary ul,
@@ -49,26 +56,25 @@
                 <div class="item box title is-3"></div>
 
                 <div class="optimistic columns is-mobile is-vcentered">
-                    <div class="column is-half">
-                        <p><span class="expected title is-1"></span>
-                            <span class="unit"></span>
-                        </p>
-                        <div class="last">
-                            <p>Last report: <strong><span class="value"></span>
-                                    <span class="unit"></span></strong>
-                            </p>
+                    <div class="column">
+                        <div class="button is-success is-fullwidth is-large">
+                            <div class="title is-1">
+                                <span class="expected"></span>
+                                <span class="unit"></span> - <span>AS EXPECTED</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="column is-half">
-                        <p><button class="button is-success is-fullwidth is-large">
-                                <span>AS EXPECTED</span>
-                            </button></p>
-                        <p><button class="button is-warning is-fullwidth is-large">
-                                <span>LIKE LAST VALUE</span>
-                            </button></p>
-                        <p><button class="button is-danger is-fullwidth is-large">
+                        <div class="last button is-warning is-fullwidth is-large">
+                            <div class="title is-1">
+                                <span class="value"></span>
+                                <span class="unit"></span> - <span>LIKE LAST VALUE</span>
+                            </div>
+                            <div class="title is-3">Reason: <span class="reason"></span></div>
+                        </div>
+                        <div class="button is-danger is-fullwidth is-large">
+                            <div class="title is-1">
                                 <span>DIFFERENT</span>
-                            </button></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

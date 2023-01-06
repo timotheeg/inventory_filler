@@ -243,6 +243,7 @@ export const definition = [
                         type: 'unit',
                         expected: 6,
                         last: 5,
+                        reason: '1 item is broken'
                     },
                 ],
             },
